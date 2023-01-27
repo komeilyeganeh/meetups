@@ -1,6 +1,8 @@
 import Head from 'next/head'
+import Meetups from '../components/Meetups/Meetups';
+import { getMeetups } from '../lib/meetups';
 
-export default function Home() {
+export default function Home({ meetups }) {
   return (
     <>
       <Head>
@@ -10,8 +12,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <h1 className='text-2xl text-red-500'>New App</h1>
+        <div className='mt-28'>
+          <div className='container'>
+            {/* Meetups Render */}
+            <Meetups meetups={meetups}/>
+          </div>
+        </div>
       </main>
     </>
   )
+}
+
+export async function getStaticProps() {
+  // fetch data
+  const meetups_data = await getMeetups();
+
+  // return data
+  return {
+    props: {
+      meetups: meetups_data
+    }
+  }
 }
