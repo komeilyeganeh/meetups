@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default ({ meetups }) => {
+export default function Meetups({ meetups }) {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-6">
+    <div className="flex flex-wrap items-center justify-center gap-6 px-4 sm:px-0">
       {meetups.map((meetup) => (
         <div className="w-96 p-6 border-2 border-slate-200 rounded-xl flex flex-col items-center gap-y-4" key={meetup.id}>
           <Image src={`${process.env.NEXT_PUBLIC_CMS_API}${meetup.image}`} width={300} height={100} alt="meetup" className="rounded-xl"/>
